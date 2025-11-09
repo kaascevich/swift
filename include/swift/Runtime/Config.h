@@ -588,6 +588,10 @@ swift_auth_code(T value, unsigned extra) {
 #if defined(__APPLE__) && defined(__arm64__)
   // Apple Silicon systems use a 16KB page size
   #define SWIFT_PAGE_SIZE 16384
+#elseif defined(__arm64__)
+  // Just assume everything uses 16KB pages
+  // Needed to get the backtracer working
+  #define SWIFT_PAGE_SIZE 16384
 #else
   // Everything else uses 4KB pages
   #define SWIFT_PAGE_SIZE 4096
